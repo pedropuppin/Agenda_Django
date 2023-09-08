@@ -12,6 +12,9 @@ pip install django
 # iniciar projeto
 django-admin startproject project_name .
 
+# crie um app novo e já adicione ele lá no INSTALED_APPS
+python manage.py startapp npme_do_app
+
 ```
 
 - Iniciar git repo
