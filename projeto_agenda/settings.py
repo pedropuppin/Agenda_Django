@@ -106,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -118,10 +118,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'base_static/'
+STATIC_URL = 'base_static/' # collectstatic
 STATICFILES_DIRS = (
     BASE_DIR / 'base_static',
 )
+
+STATIC_ROOT = BASE_DIR / 'static'
+
+# são arquivos enviados pelo seu usuário
+MEDIA_URL = 'media/'
+# arquivos enviados para o nosso usuário
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
