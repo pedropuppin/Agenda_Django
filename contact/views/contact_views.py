@@ -15,6 +15,7 @@ def index(request):
     
     context = {
         'contacts': contacts,
+        'site_title': 'Contatos -'
     }
     
     return render(
@@ -42,8 +43,11 @@ def contact(request, contact_id):
         show=True,
     )
     
+    site_title = f'{single_contact.first_name} {single_contact.last_name} - '
+    
     context = {
         'contact': single_contact,
+        'site_title': site_title,
     }
     
     return render(
