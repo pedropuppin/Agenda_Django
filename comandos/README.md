@@ -15,6 +15,9 @@ django-admin startproject project_name .
 # crie um app novo e já adicione ele lá no INSTALED_APPS
 python manage.py startapp nome_do_app
 
+# Podemos criar uma pasta chamada local_settings para armazenar variáveis locais e facilitar
+o trabalho com ambientes diferentes.
+
 ```
 
 - Iniciar git repo
