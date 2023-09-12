@@ -7,7 +7,7 @@
     <h2>Contact</h2>
 
     <form 
-      action="{% url 'contact:create' %}"
+      action="{{ form_action }}"
       method="POST"
       enctype="multipart/form-data"
     >
@@ -23,6 +23,12 @@
             <!-- <input type="text" name="first_name" maxlength="255" id="id_first_name"> -->
             {{ field }}
             {{ field.erros }}
+            
+            {% if field.help_text %}
+              <p class="help-text">
+                {{ field.help_text }}
+              </p>
+            {% endif %}
           </div>
         {% endfor %}
       </div>
