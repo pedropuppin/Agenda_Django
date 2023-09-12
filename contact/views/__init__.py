@@ -6,3 +6,4 @@
 # ajuda a organizar o app se começar a ter muitas views.
 
 from .contact_views import *
+from .contact_forms import *
