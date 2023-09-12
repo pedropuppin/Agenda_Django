@@ -1,7 +1,7 @@
 <!-- importa do base_templates -->
 {% extends 'global/base.html' %}
 {% block content %}
-  {% if contacts %}
+  {% if page_obj %}
     <div class="responsive-teble">
       <table class="contacts-table">
         <caption class="table-caption">
@@ -19,7 +19,7 @@
         </thead>
         
         <tbody>
-          {% for contact in contacts %}
+          {% for contact in page_obj %}
             <tr class="table-row">
               <td class="table-cel">
                 <a class="table-link" href="{% url 'contact:contact' contact.id %}">

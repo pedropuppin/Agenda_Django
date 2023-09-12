@@ -1,6 +1,7 @@
 # esse arquivo só funciona dessa forma pq no __init__.py a gente tá importando 
 # tudo que tem dentro dele
 
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from contact.models import Contact
 from django.http import Http404
@@ -13,11 +14,15 @@ from django.db.models import Q # permite usar 'or' nos filtros da pesquisa
 def index(request):
     contacts = Contact.objects.filter(show=True)\
         .order_by('-id') 
-    
     # print(contacts.query) # mostra a query que está sendo executada
     
+    # pagination - https://docs.djangoproject.com/en/4.2/topics/pagination/
+    paginator = Paginator(contacts, 10)  # Show 10 contacts per page.
+    page_number = request.GET.get("page") # pega a 'page' de dentro do GET
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        'contacts': contacts,
+        'page_obj': page_obj,
         'site_title': 'Contatos -'
     }
     
@@ -76,10 +81,12 @@ def search(request):
         )\
         .order_by('-id')
     
-    # print(contacts.query) # mostra a query que está sendo executada
+    paginator = Paginator(contacts, 10)  # Show 10 contacts per page.
+    page_number = request.GET.get("page") # pega a 'page' de dentro do GET
+    page_obj = paginator.get_page(page_number)
     
     context = {
-        'contacts': contacts,
+        'page_obj': page_obj,
         'site_title': 'Search -',
         'search_value': search_value,
     }
