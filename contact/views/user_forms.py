@@ -18,7 +18,7 @@ def register(request):
     
     return render(
         request,
-        'contact/user_update.html',
+        'contact/register.html',
         {
             'form': form
         }
