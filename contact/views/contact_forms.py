@@ -29,7 +29,9 @@ def create(request):
             # contact = form.save(commit=False) # atrasa o save do form para fazer alguma ateração 
             # contact.show = False
             # contact.save()
-            contact = form.save()
+            contact = form.save(commit=False)
+            contact.owner = request.user # seta o usuário que criou o contato
+            contact.save()
             return redirect('contact:update', contact_id=contact.id)
         # else:
         #     print(form.errors)
@@ -59,7 +61,12 @@ def update(request, contact_id):
     # search = request.POST.get('first_name')
     
     #seleciona um contato
-    contact = get_object_or_404(Contact, id=contact_id, show=True)
+    contact = get_object_or_404(
+        Contact, 
+        id=contact_id, 
+        show=True, 
+        owner=request.user # garante que só o owner do contato pode editar
+    )
     
     form_action = reverse('contact:update', args=(contact_id, ))
     
@@ -104,7 +111,8 @@ def delete(request, contact_id):
     contact = get_object_or_404(
         Contact, 
         id=contact_id, 
-        show=True
+        show=True,
+        owner=request.user
     )
     
     # request.POST é um dict vindo do form delete do HTML. Estamos usando o .get()
